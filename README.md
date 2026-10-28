@@ -138,9 +138,51 @@ node web/tools/benchmark.mjs                            # re-score params.json o
 
 ## Sources
 
-- **Real cells:** Mohan et al. 2015 (Cereb Cortex) and the Allen Cell Types
-  Database, via NeuroMorpho.Org.
-- **Algorithms:** Prusinkiewicz & Lindenmayer, *The Algorithmic Beauty of
-  Plants*; Runions, Lane & Prusinkiewicz 2007 (space colonization); Cuntz
-  et al. 2010 and Kanari et al. 2022 (neuron synthesis).
-- The full literature review is in [`docs/background/`](docs/background/).
+The papers give each algorithm its method and say which quantities to
+measure. The numbers themselves come from the 133 training cells: measured on
+them, or tuned by the fitting search against them.
+
+- **Data-fitted branching process:** L-Neuron's approach (Ascoli & Krichmar
+  2000): every decision is drawn from distributions measured on real cells.
+  The main stem and side branches get separate branching tables, as
+  Samsonovich & Ascoli (2005) found apical dendrites need (main and oblique
+  branches sampled apart). Measured: trunk counts and angles, bifurcation
+  probability by branch order, internal and terminal section lengths,
+  bifurcation angles, soma radius. Tuned (8): wander, persist, pull.
+- **Stochastic L-system:** Prusinkiewicz & Lindenmayer (1990). L-Neuron
+  (Ascoli & Krichmar 2000) writes neurons the same way. Tuned: all 25
+  parameters.
+- **Space colonization:** Runions, Lane & Prusinkiewicz (2007). Tuned: all 21
+  parameters.
+- **All three:** radii by Rall's 3/2 rule (Rall 1959).
+- **Real cells:** Mohan et al. (2015) and the Allen Cell Types Database, via
+  NeuroMorpho.Org (Ascoli, Donohue & Halavi 2007).
+- **Related synthesis methods:** Cuntz et al. 2010 (TREES) and Kanari et al.
+  2022 (NeuroTS). The literature review is in
+  [`docs/background/`](docs/background/).
+
+### References
+
+- Allen Institute for Brain Science. Allen Cell Types Database.
+  [celltypes.brain-map.org](https://celltypes.brain-map.org/)
+- Ascoli GA, Donohue DE, Halavi M (2007). NeuroMorpho.Org: a central resource
+  for neuronal morphologies. *J Neurosci* 27(35): 9247–9251.
+  [doi:10.1523/JNEUROSCI.2055-07.2007](https://doi.org/10.1523/JNEUROSCI.2055-07.2007)
+- Ascoli GA, Krichmar JL (2000). L-Neuron: a modeling tool for the efficient
+  generation and parsimonious description of dendritic morphology.
+  *Neurocomputing* 32–33: 1003–1011.
+  [doi:10.1016/S0925-2312(00)00272-1](https://doi.org/10.1016/S0925-2312(00)00272-1)
+- Mohan H, et al. (2015). Dendritic and axonal architecture of individual
+  pyramidal neurons across layers of adult human neocortex. *Cereb Cortex*
+  25(12): 4839–4853. [doi:10.1093/cercor/bhv188](https://doi.org/10.1093/cercor/bhv188)
+- Prusinkiewicz P, Lindenmayer A (1990). *The Algorithmic Beauty of Plants*.
+  Springer. [doi:10.1007/978-1-4613-8476-2](https://doi.org/10.1007/978-1-4613-8476-2)
+- Rall W (1959). Branching dendritic trees and motoneuron membrane
+  resistivity. *Exp Neurol* 1: 491–527.
+  [doi:10.1016/0014-4886(59)90046-9](https://doi.org/10.1016/0014-4886(59)90046-9)
+- Runions A, Lane B, Prusinkiewicz P (2007). Modeling trees with a space
+  colonization algorithm. *Eurographics Workshop on Natural Phenomena*, 63–70.
+  [doi:10.2312/NPH/NPH07/063-070](https://doi.org/10.2312/NPH/NPH07/063-070)
+- Samsonovich AV, Ascoli GA (2005). Statistical determinants of dendritic
+  morphology in hippocampal pyramidal neurons: a hidden Markov model.
+  *Hippocampus* 15(2): 166–183. [doi:10.1002/hipo.20041](https://doi.org/10.1002/hipo.20041)

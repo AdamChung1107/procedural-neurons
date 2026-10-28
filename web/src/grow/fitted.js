@@ -7,6 +7,10 @@
 // it as a persistent random walk, then split by a sampled bifurcation angle.
 // Only wander, persist and pull are free parameters; everything else is measured.
 // Trunks spread evenly around the soma in azimuth.
+//
+// This is L-Neuron's approach (Ascoli & Krichmar 2000). The separate tables for
+// the main lineage follow Samsonovich & Ascoli 2005, who could only reproduce
+// apical dendrites by sampling main and oblique branches apart.
 
 import { TreeBuilder } from "../tree.js";
 import { dot, fromSpherical, perpendicular, rotate } from "../vec.js";

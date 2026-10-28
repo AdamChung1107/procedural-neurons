@@ -46,7 +46,7 @@ axon synthesis is separate and newer, and it adds a stack of dependencies
 (morphio, tmd, neurom).
 
 **L-Neuron and statistical resampling (Ascoli & Krichmar 2000; Samsonovich &
-Ascoli).**
+Ascoli 2005).**
 - Grows trees by sampling segment length, branching probability, angles and
   taper from distributions measured on real cells, often as functions of
   branch order or path distance.
