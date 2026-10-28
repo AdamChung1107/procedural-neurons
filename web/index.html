@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Procedural Neurons</title>
+  <meta name="description" content="Human pyramidal neurons, generated procedurally in the browser and compared with real cells.">
+  <link rel="stylesheet" href="style.css">
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body>
+  <aside id="panel">
+    <header>
+      <h1>Procedural Neurons</h1>
+      <p class="sub">Human cortical neurons, grown from a seed.</p>
+    </header>
+    <nav id="tabs" role="tablist">
+      <button role="tab" data-tab="cell" aria-selected="true">Cell</button>
+      <button role="tab" data-tab="benchmark">Benchmark</button>
+    </nav>
+    <div class="row seed">
+      <label for="seed">Seed</label>
+      <input id="seed" value="1" spellcheck="false">
+      <button id="dice" title="Random seed" aria-label="Random seed">↻</button>
+    </div>
+    <section id="controls"></section>
+    <section id="info"></section>
+    <footer><span id="status"></span><span>← → ↑ ↓ move the rotation centre</span></footer>
+  </aside>
+  <main id="view">
+    <canvas id="canvas"></canvas>
+    <div id="legend"></div>
+    <div id="scale"></div>
+  </main>
+  <script type="module" src="main.js"></script>
+</body>
+</html>

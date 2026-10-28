@@ -1,0 +1,16 @@
+<!doctype html><html><head><meta charset="utf-8">
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+<style>body{margin:0;background:#0f1418}</style></head><body>
+<script type="module">
+import * as THREE from "three";
+import { ALGORITHMS } from "./src/grow/index.js";
+import { lines } from "./src/mesh.js";
+import { Rng } from "./src/rng.js";
+const [real, params] = await Promise.all(["real_cells", "params"].map((f) => fetch(`data/${f}.json`).then((r) => r.json())));
+const q = new URLSearchParams(location.search), algo = q.get("algo") || "colonization", a = ALGORITHMS[algo];
+const r = new THREE.WebGLRenderer({ antialias: true }); r.setSize(innerWidth, innerHeight); document.body.append(r.domElement);
+const s = new THREE.Scene(); s.background = new THREE.Color(0x0f1418);
+["1", "2", "3", "4"].forEach((seed, i) => { const c = lines(a.grow({ ...a.defaults, ...params[algo] }, new Rng(seed), real)); c.position.x = (i - 1.5) * 800; s.add(c); });
+const c = new THREE.PerspectiveCamera(40, innerWidth / innerHeight, 1, 20000); c.position.set(0, 0, 3600); c.lookAt(0, 0, 0);
+r.render(s, c);
+</script></body></html>
