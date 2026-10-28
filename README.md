@@ -145,8 +145,8 @@ them, or tuned by the fitting search against them.
 - **Data-fitted branching process:** L-Neuron's approach (Ascoli & Krichmar
   2000): every decision is drawn from distributions measured on real cells.
   The main stem and side branches get separate branching tables, as
-  Samsonovich & Ascoli (2005) found apical dendrites need (main and oblique
-  branches sampled apart). Measured: trunk counts and angles, bifurcation
+  Samsonovich & Ascoli (2005) found hippocampal CA1 apical dendrites need
+  (main and oblique branches sampled apart). Measured: trunk counts and angles, bifurcation
   probability by branch order, internal and terminal section lengths,
   bifurcation angles, soma radius. Tuned (8): wander, persist, pull.
 - **Stochastic L-system:** Prusinkiewicz & Lindenmayer (1990). L-Neuron

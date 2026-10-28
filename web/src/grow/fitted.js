@@ -10,7 +10,7 @@
 //
 // This is L-Neuron's approach (Ascoli & Krichmar 2000). The separate tables for
 // the main lineage follow Samsonovich & Ascoli 2005, who could only reproduce
-// apical dendrites by sampling main and oblique branches apart.
+// CA1 apical dendrites by sampling main and oblique branches apart.
 
 import { TreeBuilder } from "../tree.js";
 import { dot, fromSpherical, perpendicular, rotate } from "../vec.js";
