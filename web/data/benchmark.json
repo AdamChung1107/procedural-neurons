@@ -1,0 +1,390 @@
+{
+ "budget": 200,
+ "cellsPerCandidate": 16,
+ "heldoutCells": 57,
+ "trainCells": {
+  "dendrites": 133,
+  "axon": 38
+ },
+ "benchCells": 133,
+ "critical": 0.215,
+ "untargeted": [
+  "sholl_50",
+  "sholl_100",
+  "sholl_150",
+  "sholl_200",
+  "sholl_250",
+  "sholl_300"
+ ],
+ "reference": {
+  "perMetric": {
+   "basal_length": 0.155,
+   "basal_bifurcations": 0.188,
+   "basal_max_order": 0.033,
+   "apical_length": 0.098,
+   "apical_bifurcations": 0.095,
+   "apical_max_order": 0.09,
+   "basal_trunks": 0.075,
+   "apical_height": 0.118,
+   "sholl_50": 0.075,
+   "sholl_100": 0.145,
+   "sholl_150": 0.175,
+   "sholl_200": 0.118,
+   "sholl_250": 0.15,
+   "sholl_300": 0.108
+  },
+  "untargeted": 0.128,
+  "targeted": 0.107,
+  "indistinguishable": 14
+ },
+ "algorithms": {
+  "fitted": {
+   "label": "Data-fitted branching process",
+   "ks": {
+    "untargeted": 0.333,
+    "targeted": 0.134
+   },
+   "indistinguishable": 8,
+   "meanInBand": 0.869,
+   "msPerCell": 10.2,
+   "nodesPerCell": 11201,
+   "perMetric": {
+    "basal_length": {
+     "ks": 0.103,
+     "targeted": true,
+     "median": 4796.1,
+     "real": 4608.37,
+     "inBand": 0.9
+    },
+    "basal_bifurcations": {
+     "ks": 0.075,
+     "targeted": true,
+     "median": 24,
+     "real": 23,
+     "inBand": 0.92
+    },
+    "basal_max_order": {
+     "ks": 0.175,
+     "targeted": true,
+     "median": 5,
+     "real": 5,
+     "inBand": 0.86
+    },
+    "apical_length": {
+     "ks": 0.158,
+     "targeted": true,
+     "median": 6112.6,
+     "real": 5210.41,
+     "inBand": 0.8
+    },
+    "apical_bifurcations": {
+     "ks": 0.085,
+     "targeted": true,
+     "median": 26,
+     "real": 25,
+     "inBand": 0.83
+    },
+    "apical_max_order": {
+     "ks": 0.223,
+     "targeted": true,
+     "median": 14,
+     "real": 11,
+     "inBand": 0.9
+    },
+    "basal_trunks": {
+     "ks": 0.053,
+     "targeted": true,
+     "median": 5,
+     "real": 5,
+     "inBand": 0.89
+    },
+    "apical_height": {
+     "ks": 0.198,
+     "targeted": true,
+     "median": 682.6,
+     "real": 564.19,
+     "inBand": 0.77
+    },
+    "sholl_50": {
+     "ks": 0.398,
+     "targeted": false,
+     "median": 18,
+     "real": 25,
+     "inBand": 0.81
+    },
+    "sholl_100": {
+     "ks": 0.386,
+     "targeted": false,
+     "median": 26,
+     "real": 34,
+     "inBand": 0.92
+    },
+    "sholl_150": {
+     "ks": 0.439,
+     "targeted": false,
+     "median": 20,
+     "real": 30,
+     "inBand": 0.95
+    },
+    "sholl_200": {
+     "ks": 0.439,
+     "targeted": false,
+     "median": 12,
+     "real": 21,
+     "inBand": 0.92
+    },
+    "sholl_250": {
+     "ks": 0.216,
+     "targeted": false,
+     "median": 9,
+     "real": 11,
+     "inBand": 0.78
+    },
+    "sholl_300": {
+     "ks": 0.12,
+     "targeted": false,
+     "median": 6,
+     "real": 7,
+     "inBand": 0.9
+    }
+   },
+   "fit": {
+    "basal": 0.0279,
+    "apical": 0.0196,
+    "axon": 0.0134
+   }
+  },
+  "lsystem": {
+   "label": "Stochastic L-system",
+   "ks": {
+    "untargeted": 0.41,
+    "targeted": 0.326
+   },
+   "indistinguishable": 3,
+   "meanInBand": 0.823,
+   "msPerCell": 10.5,
+   "nodesPerCell": 11267,
+   "perMetric": {
+    "basal_length": {
+     "ks": 0.178,
+     "targeted": true,
+     "median": 5156.3,
+     "real": 4608.37,
+     "inBand": 0.99
+    },
+    "basal_bifurcations": {
+     "ks": 0.178,
+     "targeted": true,
+     "median": 27,
+     "real": 23,
+     "inBand": 0.98
+    },
+    "basal_max_order": {
+     "ks": 0.429,
+     "targeted": true,
+     "median": 6,
+     "real": 5,
+     "inBand": 0.95
+    },
+    "apical_length": {
+     "ks": 0.351,
+     "targeted": true,
+     "median": 7497.7,
+     "real": 5210.41,
+     "inBand": 0.5
+    },
+    "apical_bifurcations": {
+     "ks": 0.363,
+     "targeted": true,
+     "median": 36,
+     "real": 25,
+     "inBand": 0.44
+    },
+    "apical_max_order": {
+     "ks": 0.476,
+     "targeted": true,
+     "median": 19,
+     "real": 11,
+     "inBand": 0.35
+    },
+    "basal_trunks": {
+     "ks": 0.351,
+     "targeted": true,
+     "median": 5,
+     "real": 5,
+     "inBand": 1
+    },
+    "apical_height": {
+     "ks": 0.283,
+     "targeted": true,
+     "median": 854.5,
+     "real": 564.19,
+     "inBand": 0.77
+    },
+    "sholl_50": {
+     "ks": 0.639,
+     "targeted": false,
+     "median": 17,
+     "real": 25,
+     "inBand": 0.94
+    },
+    "sholl_100": {
+     "ks": 0.293,
+     "targeted": false,
+     "median": 29,
+     "real": 34,
+     "inBand": 0.98
+    },
+    "sholl_150": {
+     "ks": 0.499,
+     "targeted": false,
+     "median": 20,
+     "real": 30,
+     "inBand": 0.98
+    },
+    "sholl_200": {
+     "ks": 0.596,
+     "targeted": false,
+     "median": 12,
+     "real": 21,
+     "inBand": 0.92
+    },
+    "sholl_250": {
+     "ks": 0.211,
+     "targeted": false,
+     "median": 9,
+     "real": 11,
+     "inBand": 0.87
+    },
+    "sholl_300": {
+     "ks": 0.221,
+     "targeted": false,
+     "median": 8,
+     "real": 7,
+     "inBand": 0.85
+    }
+   },
+   "fit": {
+    "basal": 0.0614,
+    "apical": 0.0512,
+    "axon": 0.0217
+   }
+  },
+  "colonization": {
+   "label": "Space colonization",
+   "ks": {
+    "untargeted": 0.683,
+    "targeted": 0.493
+   },
+   "indistinguishable": 0,
+   "meanInBand": 0.721,
+   "msPerCell": 43.8,
+   "nodesPerCell": 5539,
+   "perMetric": {
+    "basal_length": {
+     "ks": 0.298,
+     "targeted": true,
+     "median": 4707,
+     "real": 4608.37,
+     "inBand": 0.98
+    },
+    "basal_bifurcations": {
+     "ks": 0.461,
+     "targeted": true,
+     "median": 19,
+     "real": 23,
+     "inBand": 0.98
+    },
+    "basal_max_order": {
+     "ks": 0.579,
+     "targeted": true,
+     "median": 7,
+     "real": 5,
+     "inBand": 0.54
+    },
+    "apical_length": {
+     "ks": 0.551,
+     "targeted": true,
+     "median": 7698,
+     "real": 5210.41,
+     "inBand": 0.89
+    },
+    "apical_bifurcations": {
+     "ks": 0.674,
+     "targeted": true,
+     "median": 42,
+     "real": 25,
+     "inBand": 0.51
+    },
+    "apical_max_order": {
+     "ks": 0.356,
+     "targeted": true,
+     "median": 14,
+     "real": 11,
+     "inBand": 0.85
+    },
+    "basal_trunks": {
+     "ks": 0.351,
+     "targeted": true,
+     "median": 5,
+     "real": 5,
+     "inBand": 1
+    },
+    "apical_height": {
+     "ks": 0.672,
+     "targeted": true,
+     "median": 961,
+     "real": 564.19,
+     "inBand": 0.95
+    },
+    "sholl_50": {
+     "ks": 0.94,
+     "targeted": false,
+     "median": 8,
+     "real": 25,
+     "inBand": 0.01
+    },
+    "sholl_100": {
+     "ks": 0.922,
+     "targeted": false,
+     "median": 10,
+     "real": 34,
+     "inBand": 0.08
+    },
+    "sholl_150": {
+     "ks": 0.862,
+     "targeted": false,
+     "median": 12,
+     "real": 30,
+     "inBand": 0.65
+    },
+    "sholl_200": {
+     "ks": 0.506,
+     "targeted": false,
+     "median": 14,
+     "real": 21,
+     "inBand": 0.97
+    },
+    "sholl_250": {
+     "ks": 0.301,
+     "targeted": false,
+     "median": 14,
+     "real": 11,
+     "inBand": 0.99
+    },
+    "sholl_300": {
+     "ks": 0.566,
+     "targeted": false,
+     "median": 12,
+     "real": 7,
+     "inBand": 0.68
+    }
+   },
+   "fit": {
+    "basal": 0.1429,
+    "apical": 0.0765,
+    "axon": 0.0568
+   }
+  }
+ }
+}
