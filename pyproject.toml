@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "neurogen"
+version = "0.1.0"
+description = "Procedural human MTG L2/3 pyramidal neurons, fitted to and benchmarked on real cells"
+requires-python = ">=3.11"
+dependencies = ["numpy>=1.26"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "neurom>=4"]
+
+[tool.setuptools]
+packages = ["neurogen"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+filterwarnings = ["ignore::UserWarning"]

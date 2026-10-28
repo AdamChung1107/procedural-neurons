@@ -1,0 +1,14 @@
+.venv/
+__pycache__/
+.pytest_cache/
+*.egg-info/
+/data/
+/results/
+
+# Retired work, kept locally, not published
+archive/
+
+# Local tool settings
+.claude/
+CLAUDE.md
+AGENTS.md
