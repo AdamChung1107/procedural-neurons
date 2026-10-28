@@ -57,10 +57,10 @@ difference is not statistically significant (distance below 0.21, p < 0.05).
 
 | | Data-fitted | L-system | Space colonization | Real |
 |---|---|---|---|---|
-| Distance on measures never fitted to (Sholl) | **0.33** | 0.41 | 0.82 | 0.13 |
-| Distance on measures fitted to | **0.13** | 0.33 | 0.67 | 0.11 |
-| Measures like real | **8 / 14** | 3 / 14 | 1 / 14 | 14 / 14 |
-| Time per cell (Node) | 9 ms | 10 ms | 56 ms | |
+| Distance on measures never fitted to (Sholl) | **0.33** | 0.41 | 0.69 | 0.13 |
+| Distance on measures fitted to | **0.13** | 0.33 | 0.49 | 0.11 |
+| Measures like real | **8 / 14** | 3 / 14 | 0 / 14 | 14 / 14 |
+| Time per cell (Node) | 5 ms | 6 ms | 40 ms | |
 
 What it shows:
 - **Data-fitted** matches what it was fitted to almost as well as real cells
@@ -78,7 +78,7 @@ What it shows:
   near the soma and rarely reach 100 µm out.
 
 The old score, the share of generated cells inside the real 5–95 % range,
-rated these 87 %, 82 % and 63 %. It rewards every cell landing near the
+rated these 87 %, 82 % and 73 %. It rewards every cell landing near the
 middle and cannot see a wrong spread, so it flattered all three.
 
 ## How it is built

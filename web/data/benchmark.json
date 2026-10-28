@@ -46,7 +46,7 @@
    },
    "indistinguishable": 8,
    "meanInBand": 0.869,
-   "msPerCell": 10.2,
+   "msPerCell": 4.6,
    "nodesPerCell": 11201,
    "perMetric": {
     "basal_length": {
@@ -162,7 +162,7 @@
    },
    "indistinguishable": 3,
    "meanInBand": 0.823,
-   "msPerCell": 10.5,
+   "msPerCell": 6.3,
    "nodesPerCell": 11267,
    "perMetric": {
     "basal_length": {
@@ -273,34 +273,34 @@
   "colonization": {
    "label": "Space colonization",
    "ks": {
-    "untargeted": 0.683,
-    "targeted": 0.493
+    "untargeted": 0.688,
+    "targeted": 0.49
    },
    "indistinguishable": 0,
-   "meanInBand": 0.721,
-   "msPerCell": 43.8,
-   "nodesPerCell": 5539,
+   "meanInBand": 0.726,
+   "msPerCell": 39.7,
+   "nodesPerCell": 5541,
    "perMetric": {
     "basal_length": {
      "ks": 0.298,
      "targeted": true,
-     "median": 4707,
+     "median": 4713,
      "real": 4608.37,
      "inBand": 0.98
     },
     "basal_bifurcations": {
-     "ks": 0.461,
+     "ks": 0.469,
      "targeted": true,
      "median": 19,
      "real": 23,
      "inBand": 0.98
     },
     "basal_max_order": {
-     "ks": 0.579,
+     "ks": 0.549,
      "targeted": true,
      "median": 7,
      "real": 5,
-     "inBand": 0.54
+     "inBand": 0.58
     },
     "apical_length": {
      "ks": 0.551,
@@ -345,11 +345,11 @@
      "inBand": 0.01
     },
     "sholl_100": {
-     "ks": 0.922,
+     "ks": 0.915,
      "targeted": false,
      "median": 10,
      "real": 34,
-     "inBand": 0.08
+     "inBand": 0.09
     },
     "sholl_150": {
      "ks": 0.862,
@@ -366,18 +366,18 @@
      "inBand": 0.97
     },
     "sholl_250": {
-     "ks": 0.301,
+     "ks": 0.316,
      "targeted": false,
      "median": 14,
      "real": 11,
      "inBand": 0.99
     },
     "sholl_300": {
-     "ks": 0.566,
+     "ks": 0.589,
      "targeted": false,
      "median": 12,
      "real": 7,
-     "inBand": 0.68
+     "inBand": 0.7
     }
    },
    "fit": {
