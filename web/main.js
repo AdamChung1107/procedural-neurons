@@ -159,6 +159,49 @@ function show(object, reframe, centres) {
   homeDistance = sceneRadius * 2.6;
 }
 
+// --- wheel zoom ---------------------------------------------------------------
+// Zooming toward the rotation centre alone ran the camera through the soma's
+// wall, since the centre sits inside the soma, and left no way to zoom onto a
+// branch. So the wheel zooms in toward the first surface under the cursor, or
+// on the line to the centre when the cursor is over empty space. The view is
+// scaled about that point, which stays put on screen and becomes the new centre;
+// the camera only moves along an unobstructed line to it, so it never enters
+// the neuron. Zooming out still backs away from the centre. Pinch zoom on touch
+// screens is left to OrbitControls.
+const raycaster = new THREE.Raycaster(), pointer = new THREE.Vector2();
+let anchor = null, anchorTime = 0, anchorX = 0, anchorY = 0;
+function zoomAnchor(x, y) {
+  const el = renderer.domElement, d = camera.position.distanceTo(controls.target);
+  raycaster.params.Line.threshold = (4 * 2 * d * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2))) / el.clientHeight; // ~4 px
+  pointer.set((x / el.clientWidth) * 2 - 1, 1 - (y / el.clientHeight) * 2);
+  raycaster.setFromCamera(pointer, camera);
+  const underCursor = current && raycaster.intersectObject(current, true)[0];
+  if (underCursor) return underCursor.point;
+  raycaster.set(camera.position, controls.target.clone().sub(camera.position).normalize());
+  const inTheWay = current && raycaster.intersectObject(current, true)[0];
+  return inTheWay && inTheWay.distance < d ? inTheWay.point : controls.target.clone();
+}
+// Listen on the view in the capture phase so this runs instead of OrbitControls' own wheel zoom.
+$("view").addEventListener("wheel", (e) => {
+  e.preventDefault();
+  e.stopPropagation();
+  const rect = renderer.domElement.getBoundingClientRect(), x = e.clientX - rect.left, y = e.clientY - rect.top;
+  const dy = Math.max(-200, Math.min(200, e.deltaMode === 1 ? e.deltaY * 40 : e.deltaY));
+  const d = camera.position.distanceTo(controls.target);
+  const k = THREE.MathUtils.clamp(0.95 ** ((-controls.zoomSpeed * dy) / 100), controls.minDistance / d, controls.maxDistance / d);
+  if (k >= 1) {
+    camera.position.sub(controls.target).multiplyScalar(k).add(controls.target);
+    anchor = null;
+    return;
+  }
+  // One ray per gesture: a trackpad sends dozens of wheel events, and the point stays fixed while scaling.
+  const now = performance.now();
+  if (!anchor || now - anchorTime > 200 || Math.hypot(x - anchorX, y - anchorY) > 3) anchor = zoomAnchor(x, y);
+  anchorTime = now; anchorX = x; anchorY = y;
+  camera.position.sub(anchor).multiplyScalar(k).add(anchor);
+  controls.target.sub(anchor).multiplyScalar(k).add(anchor);
+}, { capture: true, passive: false });
+
 // --- small UI builders ----------------------------------------------------
 const label = (key) => key.replace(".", " · ").replace(/([A-Z])/g, " $1").toLowerCase();
 
