@@ -76,6 +76,30 @@ footer { margin-top: auto; display: flex; justify-content: space-between; gap: 8
 #legend i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 5px; vertical-align: -1px; }
 #scale { position: absolute; right: 14px; bottom: 12px; color: #8d979f; font-size: 12px; font-variant-numeric: tabular-nums; pointer-events: none; }
 
+/* The controls guide. All input passes through it to the view, except on its own button. */
+#help { position: absolute; top: 12px; right: 14px; z-index: 1; padding: 8px 12px 10px; border-radius: 10px;
+  border: 1px solid rgba(201, 209, 214, 0.18); background: rgba(15, 20, 24, 0.72); backdrop-filter: blur(8px);
+  color: #c9d1d6; font-size: 12px; pointer-events: none; user-select: none; animation: help-in 0.25s; }
+#help header { display: flex; justify-content: space-between; align-items: center; color: #e6e8ea; font-weight: 500; }
+#help button { pointer-events: auto; border: 0; background: none; color: #8d979f; font: inherit; font-size: 15px; line-height: 1;
+  padding: 2px 4px; margin-right: -4px; cursor: pointer; }
+#help button:hover { color: #e6e8ea; }
+#help ul { list-style: none; margin: 6px 0 0; padding: 0; display: grid; gap: 5px; }
+#help li { display: flex; align-items: center; gap: 7px; transition: color 0.2s; }
+#help li.done { color: #8d979f; }
+#help i { position: relative; flex: none; width: 13px; height: 13px; border: 1.5px solid #8d979f; border-radius: 50%; transition: background 0.2s, border-color 0.2s; }
+#help li.done i { background: #30d158; border-color: #30d158; }
+#help li.done i::after { content: ""; position: absolute; left: 3px; top: 0.5px; width: 4px; height: 7px;
+  border: solid #0f1418; border-width: 0 1.5px 1.5px 0; transform: rotate(45deg); }
+#help kbd { flex: none; width: 62px; padding: 1px 0; border-radius: 5px; background: rgba(201, 209, 214, 0.14); color: #e6e8ea;
+  font: inherit; font-size: 11px; text-align: center; }
+#help li.done kbd { color: #8d979f; }
+#help-open { position: absolute; top: 12px; right: 14px; z-index: 1; width: 26px; height: 26px; padding: 0; border-radius: 50%;
+  border: 1px solid rgba(201, 209, 214, 0.28); background: rgba(15, 20, 24, 0.72); color: #c9d1d6; font: inherit; font-weight: 500;
+  cursor: pointer; animation: help-in 0.25s; }
+#help-open:hover { color: #fff; border-color: rgba(201, 209, 214, 0.6); }
+@keyframes help-in { from { opacity: 0; } }
+
 @media (max-width: 760px) {
   body { flex-direction: column; }
   #panel { width: 100%; height: auto; max-height: 55vh; border-right: 0; border-bottom: 1px solid var(--line); padding: 14px 16px; }

@@ -72,7 +72,7 @@ function updateScale() {
 }
 
 renderer.setAnimationLoop(() => {
-  controls.update(); fitClipPlanes(); updateScale(); placeTags(); placePivot(); renderer.render(scene, camera);
+  controls.update(); fitClipPlanes(); updateScale(); placeTags(); placePivot(); watchHelp(); renderer.render(scene, camera);
 });
 
 // --- name tags ------------------------------------------------------------
@@ -137,6 +137,7 @@ addEventListener("keydown", (e) => {
   controls.target.add(step);
   camera.position.add(step);
   pivotShownAt = performance.now();
+  if (step.lengthSq()) tick("centre");
 });
 
 const START_ZOOM = 1.5;
@@ -157,6 +158,7 @@ function show(object, reframe, centres) {
   controls.minDistance = sceneRadius / 2000; // close enough for fine branches, never onto the target
   controls.maxDistance = sceneRadius * 12;
   homeDistance = sceneRadius * 2.6;
+  setHelpBaseline();
 }
 
 // --- wheel zoom ---------------------------------------------------------------
@@ -201,6 +203,79 @@ $("view").addEventListener("wheel", (e) => {
   camera.position.sub(anchor).multiplyScalar(k).add(anchor);
   controls.target.sub(anchor).multiplyScalar(k).add(anchor);
 }, { capture: true, passive: false });
+
+// --- controls helper ----------------------------------------------------------
+// A small corner checklist of the view's controls. A row ticks when the viewer
+// really does that thing, in any order, and nothing has to be read or dismissed.
+// Zoom and rotation are read from the camera, not from input events, so mouse,
+// trackpad and pinch all count: wheel zoom and the arrow keys move the camera
+// and the centre together, so camera − centre changes only with zoom and
+// rotation. That offset can't see the arrow keys, so they report from their
+// own handler. Left and right have nothing to step to with a single neuron, so
+// the arrows row names only the keys that do something on the open tab.
+const HELP_SEEN_KEY = "neurons.helpSeen";
+const HELP_ZOOM_RATIO = 1.25; // about two wheel notches, so one stray notch doesn't count
+const HELP_ROTATE_ANGLE = THREE.MathUtils.degToRad(15); // a drag, not a click that nudged the camera
+const HELP_DONE_MS = 1500; // how long "You've got it" stays up
+const coarsePointer = matchMedia("(pointer: coarse)").matches; // no keyboard, so no arrows row
+
+const help = document.createElement("section");
+help.id = "help";
+help.setAttribute("aria-label", "View controls");
+help.innerHTML = `<header><span aria-live="polite"></span><button aria-label="Hide the controls guide" title="Hide">×</button></header>
+  <ul>
+    <li data-does="zoom"><i></i><kbd>${coarsePointer ? "Pinch" : "Scroll"}</kbd>zoom</li>
+    <li data-does="rotate"><i></i><kbd>Drag</kbd>rotate</li>
+    ${coarsePointer ? "" : `<li data-does="centre"><i></i><kbd></kbd>move centre</li>`}
+  </ul>`;
+const helpTitle = help.querySelector("span"), helpArrows = help.querySelector("[data-does=centre] kbd");
+const helpOpener = document.createElement("button");
+helpOpener.id = "help-open";
+helpOpener.textContent = "?";
+helpOpener.title = "How to move around";
+helpOpener.setAttribute("aria-label", "Show the controls guide");
+$("view").append(help, helpOpener);
+
+const helpFrom = new THREE.Vector3(), helpNow = new THREE.Vector3();
+let helpOpen = false, helpDoneTimer = 0;
+function setHelpBaseline() { helpFrom.subVectors(camera.position, controls.target); }
+function setHelpOpen(open) {
+  clearTimeout(helpDoneTimer);
+  helpOpen = open;
+  help.hidden = !open;
+  helpOpener.hidden = open;
+}
+function closeHelp() {
+  try { localStorage.setItem(HELP_SEEN_KEY, "1"); } catch { /* no storage: it just shows again next visit */ }
+  setHelpOpen(false);
+}
+function reopenHelp() {
+  help.querySelectorAll("li").forEach((row) => row.classList.remove("done"));
+  helpTitle.textContent = "Try it";
+  setHelpBaseline();
+  setHelpOpen(true);
+}
+function tick(does) {
+  const row = help.querySelector(`[data-does=${does}]:not(.done)`);
+  if (!helpOpen || !row) return;
+  row.classList.add("done");
+  if (help.querySelector("li:not(.done)")) return;
+  helpTitle.textContent = "You've got it";
+  helpDoneTimer = setTimeout(closeHelp, HELP_DONE_MS);
+}
+function watchHelp() {
+  if (!helpOpen || !helpFrom.lengthSq()) return; // no baseline before the first neuron: angleTo a zero vector gives 90°
+  helpNow.subVectors(camera.position, controls.target);
+  const ratio = helpNow.length() / helpFrom.length();
+  if (ratio > HELP_ZOOM_RATIO || ratio < 1 / HELP_ZOOM_RATIO) tick("zoom");
+  if (helpNow.angleTo(helpFrom) > HELP_ROTATE_ANGLE) tick("rotate");
+}
+help.querySelector("button").addEventListener("click", closeHelp);
+helpOpener.addEventListener("click", reopenHelp);
+helpTitle.textContent = "Try it";
+let helpSeen = false;
+try { helpSeen = localStorage.getItem(HELP_SEEN_KEY) === "1"; } catch { /* no storage: treat as a first visit */ }
+setHelpOpen(!helpSeen);
 
 // --- small UI builders ----------------------------------------------------
 const label = (key) => key.replace(".", " · ").replace(/([A-Z])/g, " $1").toLowerCase();
@@ -362,6 +437,7 @@ function openTab(tab) {
   state.tab = tab;
   document.querySelectorAll("#tabs button").forEach((x) => x.setAttribute("aria-selected", x.dataset.tab === tab));
   history.replaceState(null, "", `#${tab}`);
+  if (helpArrows) helpArrows.textContent = tab === "benchmark" ? "← → ↑ ↓" : "↑ ↓";
   renderControls();
   regenerate(true);
 }
