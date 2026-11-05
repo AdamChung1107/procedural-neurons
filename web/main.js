@@ -301,10 +301,8 @@ function showCell(reframe) {
     const [lo, mid, hi] = real.heldout[k], ok = m[k] >= lo && m[k] <= hi;
     return `<tr><td>${label(k).replace(/_/g, " ")}</td><td class="${ok ? "ok" : "out"}">${fmt(m[k])}</td><td>${fmt(lo)}–${fmt(hi)}</td></tr>`;
   }).join("");
-  const inBand = DENDRITE_METRICS.filter((k) => m[k] >= real.heldout[k][0] && m[k] <= real.heldout[k][2]).length;
   $("info").innerHTML = `<h2>Compared with real cells</h2>
-    <div class="card"><table><tr><th></th><th>This cell</th><th>Real 5–95 %</th></tr>${rows}</table></div>
-    <p class="note">${inBand} of ${DENDRITE_METRICS.length} inside the range of ${real.heldout_n} held-out human cells.</p>`;
+    <div class="card"><table><tr><th></th><th>This cell</th><th>Real 5–95 %</th></tr>${rows}</table></div>`;
 }
 
 function showBenchmark() {
